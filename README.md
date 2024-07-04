@@ -7,6 +7,9 @@
 **Domain**: Embedded Systems
 
 **Duration**: July to August 2024
+
+**Mentor**: Muzammil Ahmed
+
 ![image](https://github.com/VenkataGanesh4744/CODTECH-TASK2/assets/136093120/43b930e6-ade9-4ae2-a4d9-b0582b265e50)
 ![image](https://github.com/VenkataGanesh4744/CODTECH-TASK2/assets/136093120/d7743426-e58d-4a4b-8df3-263821165c4c)
 ![task2](https://github.com/VenkataGanesh4744/CODTECH-TASK2/assets/136093120/81608abc-fc83-47ea-8885-c5bc580dc766)
