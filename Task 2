@@ -1,0 +1,100 @@
+//Arduino Code
+//To display readings on the serial monitor:
+
+
+#include "DHT.h"
+
+// Define the DHT sensor type and pin
+#define DHTTYPE DHT11 // DHT11 or DHT22
+#define DHTPIN 2      // Digital pin connected to the DHT sensor
+
+// Initialize the DHT sensor
+DHT dht(DHTPIN, DHTTYPE);
+
+void setup() {
+  // Start serial communication
+  Serial.begin(9600);
+  
+  // Initialize the DHT sensor
+  dht.begin();
+}
+
+void loop() {
+  // Wait a few seconds between measurements
+  delay(2000);
+  
+  // Read temperature and humidity
+  float humidity = dht.readHumidity();
+  float temperature = dht.readTemperature();
+  
+  // Check if any reads failed and exit early (to try again)
+  if (isnan(humidity) || isnan(temperature)) {
+    Serial.println("Failed to read from DHT sensor!");
+    return;
+  }
+  
+  // Print the results to the serial monitor
+  Serial.print("Humidity: ");
+  Serial.print(humidity);
+  Serial.print(" %\t");
+  Serial.print("Temperature: ");
+  Serial.print(temperature);
+  Serial.println(" *C");
+}
+
+
+//To display readings on an LCD screen:
+
+
+#include <LiquidCrystal.h>
+#include "DHT.h"
+
+// Define the DHT sensor type and pin
+#define DHTTYPE DHT11 // DHT11 or DHT22
+#define DHTPIN 2      // Digital pin connected to the DHT sensor
+
+// Initialize the DHT sensor
+DHT dht(DHTPIN, DHTTYPE);
+
+// Initialize the LCD library with the numbers of the interface pins
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+
+void setup() {
+  // Start serial communication
+  Serial.begin(9600);
+  
+  // Initialize the DHT sensor
+  dht.begin();
+  
+  // Set up the LCD's number of columns and rows
+  lcd.begin(16, 2);
+  lcd.print("Temp & Humidity");
+}
+
+void loop() {
+  // Wait a few seconds between measurements
+  delay(2000);
+  
+  // Read temperature and humidity
+  float humidity = dht.readHumidity();
+  float temperature = dht.readTemperature();
+  
+  // Check if any reads failed and exit early (to try again)
+  if (isnan(humidity) || isnan(temperature)) {
+    Serial.println("Failed to read from DHT sensor!");
+    return;
+  }
+  
+  // Set the cursor to the beginning of the first row
+  lcd.setCursor(0, 0);
+  lcd.print("Humidity: ");
+  lcd.print(humidity);
+  lcd.print(" %");
+
+  // Set the cursor to the beginning of the second row
+  lcd.setCursor(0, 1);
+  lcd.print("Temp: ");
+  lcd.print(temperature);
+  lcd.print(" C");
+}
+
